@@ -1,0 +1,10 @@
+<form #authForm = "ngForm" (ngSubmit)="authorize(authForm)">
+    <div>
+        <input  name = "login" placeholder="логин" (ngModelChange)="removeErrorMessage()" ngModel required>
+    </div>
+    <div>
+        <input  name = "password" placeholder="пароль" (ngModelChange)="removeErrorMessage()" ngModel required>
+    </div>
+    <div class="error-message" *ngIf="isInvalidAuth">Неверный логин или пароль!</div>
+    <button type="submit" [disabled]="authForm.invalid || isInvalidAuth">Войти</button>
+</form>
