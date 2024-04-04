@@ -86,7 +86,8 @@
               "buildTarget": "pbk-front:build:production"
             },
             "development": {
-              "buildTarget": "pbk-front:build:development"
+              "buildTarget": "pbk-front:build:development",
+              "proxyConfig": "proxy.config.json"
             }
           },
           "defaultConfiguration": "development"
