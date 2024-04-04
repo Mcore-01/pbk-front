@@ -1,10 +1,23 @@
 <form #authForm = "ngForm" (ngSubmit)="authorize(authForm)">
     <div>
+        <label>логин/почта/тел</label>
         <input  name = "login" placeholder="логин" (ngModelChange)="removeErrorMessage()" ngModel required>
     </div>
     <div>
+        <label>пароль</label>
         <input  name = "password" placeholder="пароль" (ngModelChange)="removeErrorMessage()" ngModel required>
     </div>
-    <div class="error-message" *ngIf="isInvalidAuth">Неверный логин или пароль!</div>
-    <button type="submit" [disabled]="authForm.invalid || isInvalidAuth">Войти</button>
+    <div>
+        <h3 class="blue-label">Забыли пароль</h3>
+        <a routerLink="/reg">восстановить аккаунт</a>
+    </div>
+    <button type="submit" [disabled]="authForm.invalid">Войти</button>
+    <div>
+        <h3 class="blue-label">Если у вас еще нет аккаунта</h3>
+        <a routerLink="/reg">регистрация</a>
+    </div>
+
+
 </form>
+<div class="login-error" *ngIf="isInvalidLogin"></div>
+<div class="password-error" *ngIf="isInvalidPassword"></div>
