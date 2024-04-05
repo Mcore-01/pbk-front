@@ -10,6 +10,7 @@ export class AuthService {
     constructor(private http: HttpClient) { }
     //Запрашиваем у сервера токен, если статус 200, то добавляем токен в локальное хранилище
     createToken(login: string, password:string){
+        // внедрить регулярку для проверки на логин, почта, тел
         const data = {LoginType: 0, Value: login, Password: password};
         return  this.http.post<any>("/api/Account/login", data).pipe(
             tap(response=>{

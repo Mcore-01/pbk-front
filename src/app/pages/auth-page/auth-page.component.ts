@@ -10,7 +10,7 @@ import {HttpClientModule} from "@angular/common/http";
   standalone: true,
   imports: [AuthComponent, CommonModule, HttpClientModule, RouterOutlet],
   templateUrl: './auth-page.component.html',
-  styles: ``,
+  styleUrl: `./auth-page.component.css`,
   providers:[AuthService]
 })
 export class AuthPageComponent {

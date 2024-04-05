@@ -1,35 +1,93 @@
+:host{
+    margin-top: 100px;
+}
 form{
     display: flex;
     flex-direction: column;
-    margin-right: auto;
-    margin-left: auto;
     align-items: center;
-    border-style: solid;
-    background-color: rgba(255,255,255, 0.25);
-    font-size: 20px;
-    width: 350px;
+
+    width: 593px;
+    padding: 40px 20px 60px 20px;
+
+    background: linear-gradient(to bottom right, rgba(18, 32, 104, 0.7), rgba(30, 59, 178, 0.7));
+    border: 3px solid rgba(91, 91, 94, 0.54);
+    border-radius: 9px;
+
 }
 label{
-    text-align: right;
     color: white;
+    font-size: 46px;
 }
+
 h3{
     color: white;
 }
-.divPas{
-    margin-top: 40px;
+
+a, a:hover, a:visited, a:focus, a:active {
+    font-size: 32px;
+    color: rgba(254, 254, 255, 1);
 }
-div{
+
+input, button {
+    width: 510px;
+    border-radius: 9px;
+    background-color: rgba(254, 254, 255, 0.2);
+    border: 2px  rgba(254, 254, 255, 0.54) solid;
+}
+
+input{
+    height: 61px;
+    font-size: 50px;
+    color: white;
+}
+
+button{
+    font-size: 48px;
+    color: rgba(254, 254, 255, 1);
+    height: 100px;
+    margin: 100px 0 20px 0;
+}
+
+button:hover{
+    background-color: rgba(141, 255, 71, 0.42);
+    border: 2px rgba(231, 255, 181, 0.68) solid;
+}
+
+.blue-label{
+    color: rgba(152, 218, 255, 1);
+    font-size: 32px;
+}
+.input-container{
+    text-align: right;
     display: flex;
     flex-direction: column;
     margin-bottom: 20px;
 }
-input{
-    width: 300px;
-    height: 25px;
-    border-radius: 5px;
-    background-color: rgba(255,255,255, 0.5);
-}
+
 .error-message{
     color: red;
+}
+
+.login-error, .password-error{
+    width: 319px;
+    background-color: rgba(229, 20, 20, 0.6);
+
+    padding: 10px;
+    color: white;
+    font-size: 32px;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 61px;
+}
+
+.login-error{
+    position: absolute;
+    top: 243px;
+    left: 1281px;
+}
+
+.password-error{
+    position: absolute;
+    top: 380px;
+    left: 1281px;
 }

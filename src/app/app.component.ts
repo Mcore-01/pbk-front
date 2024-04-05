@@ -9,7 +9,7 @@ import {HttpClientModule} from "@angular/common/http";
   standalone: true,
   imports: [RouterOutlet, AuthPageComponent, HttpClientModule],
   templateUrl: './app.component.html',
-  styles: []
+  styleUrl: './app.component.css'
 })
 export class AppComponent {
   title = 'pbk-front';
