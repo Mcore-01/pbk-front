@@ -1,14 +1,14 @@
 <form #authForm = "ngForm" (ngSubmit)="authorize(authForm)">
-    <div>
+    <div class="divPas">
         <label>логин/почта/тел</label>
-        <input  name = "login" placeholder="логин" (ngModelChange)="removeErrorMessage()" ngModel required>
+        <input  name = "login" (ngModelChange)="removeErrorMessage()" ngModel required>
     </div>
     <div>
         <label>пароль</label>
-        <input  name = "password" placeholder="пароль" (ngModelChange)="removeErrorMessage()" ngModel required>
+        <input  name = "password" (ngModelChange)="removeErrorMessage()" ngModel required>
     </div>
     <div>
-        <h3 class="blue-label">Забыли пароль</h3>
+        <label class="blue-label">Забыли пароль</label>
         <a routerLink="/reg">восстановить аккаунт</a>
     </div>
     <button type="submit" [disabled]="authForm.invalid">Войти</button>
