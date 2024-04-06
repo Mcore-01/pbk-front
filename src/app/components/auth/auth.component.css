@@ -57,6 +57,7 @@ button:hover{
     color: rgba(152, 218, 255, 1);
     font-size: 32px;
 }
+
 .input-container{
     text-align: right;
     display: flex;

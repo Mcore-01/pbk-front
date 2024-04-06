@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {tap} from "rxjs";
+import {Logintypes} from "../enums/logintype";
 
 @Injectable({
     providedIn: 'root'
@@ -9,9 +10,9 @@ export class AuthService {
 
     constructor(private http: HttpClient) { }
     //Запрашиваем у сервера токен, если статус 200, то добавляем токен в локальное хранилище
-    createToken(login: string, password:string){
+    createToken(loginType:Logintypes, login: string, password:string){
         // внедрить регулярку для проверки на логин, почта, тел
-        const data = {LoginType: 0, Value: login, Password: password};
+        const data = {LoginType: loginType, Value: login, Password: password};
         return  this.http.post<any>("/api/Account/login", data).pipe(
             tap(response=>{
                 if (response) {
