@@ -17,8 +17,7 @@ import {Logintypes} from "../../enums/logintype";
 })
 export class AuthComponent implements  OnDestroy{
     errorMessage: string = "";
-    isInvalidLogin: boolean = false;
-    isInvalidPassword: boolean = false;
+    isInvalidAuthData: boolean = false;
 
     loginSub: Subscription;
     constructor(private http: AuthService)  {
@@ -27,8 +26,7 @@ export class AuthComponent implements  OnDestroy{
 
     authorize(form:NgForm){
         this.errorMessage = "";
-        this.isInvalidLogin = false;
-        this.isInvalidPassword = false
+        this.isInvalidAuthData = false;
         let logintype;
         try {
             logintype = this.getLoginType(form.value.login)
@@ -36,7 +34,7 @@ export class AuthComponent implements  OnDestroy{
         catch (error){
             if (error instanceof Error) {
                 this.errorMessage = error.message;
-                this.isInvalidLogin = true;
+                this.isInvalidAuthData = true;
             }
             return;
         }
@@ -48,23 +46,23 @@ export class AuthComponent implements  OnDestroy{
                 switch (errorCode){
                     case "UserUsernameNotExists":
                         this.errorMessage = "Такого имени пользователя нет!";
-                        this.isInvalidLogin = true;
+                        this.isInvalidAuthData = true;
                         break;
                     case "UserEmailNotExists":
                         this.errorMessage = "Такой почти нет!";
-                        this.isInvalidLogin = true;
+                        this.isInvalidAuthData = true;
                         break;
                     case "UserPhonenumberNotExists":
                         this.errorMessage = "Такой номер не найден!";
-                        this.isInvalidLogin = true;
+                        this.isInvalidAuthData = true;
                         break;
                     case "ServerError":
                         this.errorMessage = "Ошибка сервера!";
-                        this.isInvalidLogin = true;
+                        this.isInvalidAuthData = true;
                         break;
                     case "InvalidUserPassword":
                         this.errorMessage = "Неправильный пароль!";
-                        this.isInvalidPassword = true;
+                        this.isInvalidAuthData = true;
                         break;
                 }
                 console.log(this.errorMessage);

@@ -1,11 +1,14 @@
 import { Component } from '@angular/core';
+import {RegComponent} from "../../components/reg/reg.component";
 
 @Component({
   selector: 'app-reg-page',
   standalone: true,
-  imports: [],
+    imports: [
+        RegComponent
+    ],
   templateUrl: './reg-page.component.html',
-  styles: ``
+  styleUrl: './reg-page.component.css'
 })
 export class RegPageComponent {
 

@@ -1,7 +1,8 @@
 :host{
-    margin-top: 50px;
+    margin-top: 0;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto auto;
 }
 form{
     display: flex;
@@ -9,12 +10,14 @@ form{
     align-items: center;
 
     width: 593px;
-    padding: 40px 20px 60px 20px;
+    padding: 30px 20px 30px 20px;
 
     background: linear-gradient(to bottom right, rgba(18, 32, 104, 0.7), rgba(30, 59, 178, 0.7));
     border: 3px solid rgba(91, 91, 94, 0.54);
     border-radius: 9px;
+
     grid-column: 2/2;
+    grid-row: span 2;
 }
 label{
     color: white;
@@ -43,14 +46,14 @@ input{
     color: white;
 }
 
-button{
+.create-acc-button{
     font-size: 48px;
     color: rgba(254, 254, 255, 1);
-    height: 100px;
-    margin: 100px 0 20px 0;
+    height: 87px;
+    margin: 20px 0 20px 0;
 }
 
-button:hover{
+.create-acc-button:hover{
     background-color: rgba(141, 255, 71, 0.42);
     border: 2px rgba(231, 255, 181, 0.68) solid;
 }
@@ -66,14 +69,18 @@ button:hover{
     flex-direction: column;
     margin-bottom: 20px;
 }
+.text-align-left{
+    text-align: left;
+}
+.error-message{
+    color: red;
+}
 
-
-.auth-error{
+.error{
     width: 319px;
-    background-color: rgba(229, 20, 20, 0.6);
     height: 224px;
-    margin-top: 90px;
-
+    background-color: rgba(229, 20, 20, 0.6);
+    margin-top: 100px;
     padding: 10px;
     color: white;
     font-size: 32px;
@@ -82,5 +89,25 @@ button:hover{
     text-align: center;
     line-height: 61px;
     grid-column: 3/3;
+    grid-row: 1;
 }
 
+.error-second-row{
+    grid-row: 2;
+}
+.blue-background{
+    background-color: rgba(68, 96, 210, 0.6);
+}
+.back-to-auth-page{
+    width: auto;
+    height: 149px;
+    background-color: rgba(68, 96, 210, 0.6);
+    margin-top: 50px;
+    padding: 40px 30px;
+    font-size: 32px;
+    color:white;
+    border: none;
+    border-radius: 9px 0 0 9px;
+    grid-column: 1/1;
+    justify-self: end;
+}

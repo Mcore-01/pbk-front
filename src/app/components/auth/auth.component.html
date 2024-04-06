@@ -16,5 +16,4 @@
     <h3 class="blue-label">Если у вас еще нет аккаунта</h3>
     <a routerLink="/reg">регистрация</a>
 </form>
-<div class="login-error" *ngIf="isInvalidLogin"><p>{{errorMessage}}</p></div>
-<div class="password-error" *ngIf="isInvalidPassword"><p>{{errorMessage}}</p></div>
+<div class="auth-error" *ngIf="isInvalidAuthData"><p>{{errorMessage}}</p></div>
