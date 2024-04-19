@@ -1,0 +1,27 @@
+<button class="back-to-auth-page" (click)="openAuthPage()">Вернуться</button>
+<form #regForm = "ngForm" (ngSubmit)="registration(regForm)">
+    <div class="input-container">
+        <label>никнейм</label>
+        <input  name = "nickname" ngModel required>
+    </div>
+    <div class="input-container">
+        <label>почта</label>
+        <input  name = "email" type="email" ngModel>
+    </div>
+    <div class="input-container">
+        <label>номер телефона</label>
+        <input  name = "phoneNumber" type="tel" ngModel>
+    </div>
+    <div class="input-container text-align-left">
+        <label>пароль</label>
+        <input  name = "password" type="password" minlength="6" (focus)="focusPasswordInput()" (blur)="blurPasswordInput(regForm)" ngModel required>
+    </div>
+    <div class="input-container text-align-left">
+        <label>повторите пароль</label>
+        <input  name = "repeatPassword" type="password" minlength="6" (focus)="focusPasswordInput()" (blur)="blurPasswordInput(regForm)" ngModel required>
+    </div>
+
+    <button class="create-acc-button" type="submit" [disabled]="regForm.invalid">Создать аккаунт</button>
+
+</form>
+<div class="error" [ngClass]="errorType" *ngIf="showErrorBox"><p>{{errorMessage}}</p></div>
