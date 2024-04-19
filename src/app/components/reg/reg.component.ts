@@ -76,8 +76,8 @@ export class RegComponent implements OnDestroy{
 
   }
   blurPasswordInput(form: NgForm){
-    if ((form.value.password).length < 6){
-      this.errorMessage = "Пароль, должен быть минимум из 6 символов!";
+    if ((form.value.password).length < 6 && (form.value.password).length >= 1){
+      this.errorMessage = "В пароле минимум 6 символов.";
       this.errorType = {'error-second-row': true};
       this.showErrorBox = true;
       return;
@@ -89,7 +89,7 @@ export class RegComponent implements OnDestroy{
   }
 
   focusPasswordInput(){
-    this.errorMessage = "Пароль, должен быть минимум из 6 символов!";
+    this.errorMessage = "В пароле минимум 6 символов.";
     this.errorType = {"error-second-row blue-background": true};
     this.showErrorBox = true;
   }
