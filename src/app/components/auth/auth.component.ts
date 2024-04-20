@@ -27,19 +27,13 @@ export class AuthComponent implements  OnDestroy{
     authorize(form:NgForm){
         this.errorMessage = "";
         this.isInvalidAuthData = false;
-        let logintype;
-        try {
-            logintype = this.getLoginType(form.value.login)
-        }
-        catch (error){
-            if (error instanceof Error) {
-                this.errorMessage = error.message;
-                this.isInvalidAuthData = true;
-            }
+        if (!this.getLoginType(form.value.login)){
+            this.errorMessage = 'Невалидное значение логина';
+            this.isInvalidAuthData = true;
             return;
         }
 
-        this.loginSub = this.http.createToken(logintype, form.value.login,form.value.password).subscribe({
+        this.loginSub = this.http.createToken(form.value.login,form.value.password).subscribe({
             next:(data: any) => console.log(data),
             error: error => {
                 const errorCode: string  = error.error.code;
@@ -71,23 +65,12 @@ export class AuthComponent implements  OnDestroy{
 
     }
 
-    getLoginType (login: string):Logintypes{
+    getLoginType (login: string):boolean{
         const regUsername : RegExp = /^[A-z0-9_-]{3,16}$/;
         const regEmail : RegExp = /^[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}$/i;
         const regPhoneNumber : RegExp = /^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/;
 
-        if (regPhoneNumber.test(login))
-            return Logintypes.PhoneNumber
-
-        if (regUsername.test(login))
-            return Logintypes.Username;
-
-        if (regEmail.test(login))
-            return Logintypes.Email;
-
-
-
-        throw new Error('Невалидное значение');
+        return regPhoneNumber.test(login) || regUsername.test(login) || regEmail.test(login);
     }
 
     ngOnDestroy() {
