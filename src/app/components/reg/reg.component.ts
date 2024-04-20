@@ -6,6 +6,7 @@ import {Subscription} from "rxjs";
 import {AuthService} from "../../services/auth.service";
 import {HttpClientModule} from "@angular/common/http";
 import {IRegisterRequest} from "../../models/register";
+import {Logintypes} from "../../enums/logintype";
 
 @Component({
   selector: 'app-reg',
@@ -29,6 +30,13 @@ export class RegComponent implements OnDestroy{
     this.errorMessage = "";
     this.errorType = {"": false};
     this.showErrorBox = false;
+
+    if (!this.isCorrectField(form.value.nickname, Logintypes.Username)
+        || !this.isCorrectField(form.value.phoneNumber, Logintypes.PhoneNumber)
+        || !this.isCorrectField(form.value.email, Logintypes.Email)){
+      return;
+    }
+
     if (form.value.password != form.value.repeatPassword){
       this.errorMessage = "пароли не совпадают!";
       this.errorType = {'error-second-row': true};
@@ -58,6 +66,12 @@ export class RegComponent implements OnDestroy{
           case "UserPhonenumberExists":
             this.errorMessage = "Номер уже используется!";
             break;
+          case "InvalidUserEmail":
+            this.errorMessage = "Некорректная почта!";
+            break;
+          case "InvalidUserPhonenumber":
+            this.errorMessage = "Некорректный номер!";
+            break;
           case "ServerError":
             this.errorMessage = "Ошибка сервера!";
             break;
@@ -67,14 +81,36 @@ export class RegComponent implements OnDestroy{
     });
 
   }
+  isCorrectField (field: string, loginType: Logintypes):boolean{
+    const regUsername : RegExp = /^[A-z0-9_-]{3,16}$/;
+    const regEmail : RegExp = /^[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}$/i;
+    const regPhoneNumber : RegExp = /^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/;
+
+    if (loginType == Logintypes.Username && !regUsername.test(field)){
+      this.errorMessage = "Некорректное пользовательское имя!";
+      this.errorType = {'error-second-row': true};
+      this.showErrorBox = true;
+      return false;
+    }
+    if (loginType == Logintypes.PhoneNumber && !regPhoneNumber.test(field)){
+      this.errorMessage = "Некорректный номер!";
+      this.errorType = {'error-second-row': true};
+      this.showErrorBox = true;
+      return false;
+    }
+    if (loginType == Logintypes.Email && !regEmail.test(field)){
+      this.errorMessage = "Некорректная почта!";
+      this.errorType = {'error-second-row': true};
+      this.showErrorBox = true;
+      return false;
+    }
+    return true;
+  }
 
   openAuthPage(){
     this.route.navigate(['/auth'])
   }
 
-  changePasswordInput(regForm: NgForm){
-
-  }
   blurPasswordInput(form: NgForm){
     if ((form.value.password).length < 6 && (form.value.password).length >= 1){
       this.errorMessage = "В пароле минимум 6 символов.";
