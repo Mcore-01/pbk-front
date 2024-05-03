@@ -87,19 +87,19 @@ export class RegComponent implements OnDestroy{
     const regPhoneNumber : RegExp = /^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/;
 
     if (loginType == Logintypes.Username && !regUsername.test(field)){
-      this.errorMessage = "Некорректное пользовательское имя!";
+      this.errorMessage = "Некорректное пользовательское имя";
       this.errorType = {'error-second-row': true};
       this.showErrorBox = true;
       return false;
     }
     if (loginType == Logintypes.PhoneNumber && !regPhoneNumber.test(field)){
-      this.errorMessage = "Некорректный номер!";
+      this.errorMessage = "Некорректный номер";
       this.errorType = {'error-second-row': true};
       this.showErrorBox = true;
       return false;
     }
     if (loginType == Logintypes.Email && !regEmail.test(field)){
-      this.errorMessage = "Некорректная почта!";
+      this.errorMessage = "Некорректная почта";
       this.errorType = {'error-second-row': true};
       this.showErrorBox = true;
       return false;

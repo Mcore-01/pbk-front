@@ -4,12 +4,13 @@
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: auto auto;
 }
+
 form{
     display: flex;
     flex-direction: column;
     align-items: center;
 
-    width: 593px;
+    width: 370px;
     padding: 30px 20px 30px 20px;
 
     background: linear-gradient(to bottom right, rgba(18, 32, 104, 0.7), rgba(30, 59, 178, 0.7));
@@ -19,37 +20,30 @@ form{
     grid-column: 2/2;
     grid-row: span 2;
 }
+
 label{
     color: white;
-    font-size: 46px;
-}
-
-h3{
-    color: white;
-}
-
-a, a:hover, a:visited, a:focus, a:active {
-    font-size: 32px;
-    color: rgba(254, 254, 255, 1);
+    font-size: 25px;
+    margin: 10px 0px 5px 0px;
 }
 
 input, button {
-    width: 510px;
+    width: 320px;
     border-radius: 9px;
     background-color: rgba(254, 254, 255, 0.2);
     border: 2px  rgba(254, 254, 255, 0.54) solid;
 }
 
 input{
-    height: 61px;
-    font-size: 50px;
+    height: 50px;
+    font-size: 35px;
     color: white;
 }
 
 .create-acc-button{
-    font-size: 48px;
+    font-size: 25px;
     color: rgba(254, 254, 255, 1);
-    height: 87px;
+    height: 60px;
     margin: 20px 0 20px 0;
 }
 
@@ -58,36 +52,33 @@ input{
     border: 2px rgba(231, 255, 181, 0.68) solid;
 }
 
-.blue-label{
-    color: rgba(152, 218, 255, 1);
-    font-size: 32px;
-}
-
 .input-container{
     text-align: right;
     display: flex;
     flex-direction: column;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
+
 .text-align-left{
     text-align: left;
 }
+
 .error-message{
     color: red;
 }
 
 .error{
-    width: 319px;
-    height: 224px;
+    width: 220px;
+    height: 150px;
     background-color: rgba(229, 20, 20, 0.6);
     margin-top: 100px;
     padding: 10px;
     color: white;
-    font-size: 32px;
+    font-size: 25px;
     display: grid;
     place-items: center;
     text-align: center;
-    line-height: 61px;
+    line-height: 45px;
     grid-column: 3/3;
     grid-row: 1;
 }
@@ -95,16 +86,18 @@ input{
 .error-second-row{
     grid-row: 2;
 }
+
 .blue-background{
     background-color: rgba(68, 96, 210, 0.6);
 }
+
 .back-to-auth-page{
     width: auto;
-    height: 149px;
+    height: auto;
     background-color: rgba(68, 96, 210, 0.6);
-    margin-top: 50px;
-    padding: 40px 30px;
-    font-size: 32px;
+    margin-top: 40px;
+    padding: 30px;
+    font-size: 25px;
     color:white;
     border: none;
     border-radius: 9px 0 0 9px;

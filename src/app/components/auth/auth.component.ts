@@ -28,7 +28,7 @@ export class AuthComponent implements  OnDestroy{
         this.errorMessage = "";
         this.isInvalidAuthData = false;
         if (!this.getLoginType(form.value.login)){
-            this.errorMessage = 'Невалидное значение логина';
+            this.errorMessage = 'Неверный логин';
             this.isInvalidAuthData = true;
             return;
         }
@@ -39,23 +39,23 @@ export class AuthComponent implements  OnDestroy{
                 const errorCode: string  = error.error.code;
                 switch (errorCode){
                     case "UserUsernameNotExists":
-                        this.errorMessage = "Такого имени пользователя нет!";
+                        this.errorMessage = "Имя не найдено";
                         this.isInvalidAuthData = true;
                         break;
                     case "UserEmailNotExists":
-                        this.errorMessage = "Такой почти нет!";
+                        this.errorMessage = "Почта не найдена";
                         this.isInvalidAuthData = true;
                         break;
                     case "UserPhonenumberNotExists":
-                        this.errorMessage = "Такой номер не найден!";
+                        this.errorMessage = "Номер не найден";
                         this.isInvalidAuthData = true;
                         break;
                     case "ServerError":
-                        this.errorMessage = "Ошибка сервера!";
+                        this.errorMessage = "Ошибка сервера";
                         this.isInvalidAuthData = true;
                         break;
                     case "InvalidUserPassword":
-                        this.errorMessage = "Неправильный пароль!";
+                        this.errorMessage = "Неверный пароль";
                         this.isInvalidAuthData = true;
                         break;
                 }
