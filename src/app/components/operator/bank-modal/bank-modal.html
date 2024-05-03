@@ -1,0 +1,15 @@
+<app-modal (isBackgroundClicked)="closeDialog($event)">
+
+    <div class="add-form">
+        <mat-form-field class="field-data">
+            <mat-label>Название банка</mat-label>
+            <input matInput placeholder="Введите название банка" [(ngModel)]="data.name">
+        </mat-form-field>
+
+        <div class="control-form-button">
+            <button mat-flat-button color="primary" (click)="dialogRef.close(data)">Сохранить</button>
+            <button mat-flat-button color="primary" (click)="dialogRef.close()">Отмена</button>
+        </div>
+    </div>
+
+</app-modal>

@@ -1,0 +1,25 @@
+:host{
+    display: flex;
+    color: white;
+    height: 100%;
+}
+header{
+    background-color: rgb(25, 28, 28);
+
+    width: fit-content;
+    padding: 10px;
+}
+nav{
+    display: flex;
+    flex-direction: column;
+    width: 10vw;
+}
+a{
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+    padding: 10px;
+}
+a:hover{
+    background-color: rgb(59, 66, 66);
+}

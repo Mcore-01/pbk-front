@@ -29,4 +29,8 @@ export class MainPageComponent {
     console.log("Удаление токена");
     this.httpAuth.removeToken();
   }
+
+  giveMeUnlimitedPower(){
+    this.router.navigate(['/operator']);
+  }
 }
