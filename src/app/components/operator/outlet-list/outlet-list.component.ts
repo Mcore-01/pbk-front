@@ -15,14 +15,14 @@ import {MatInput} from "@angular/material/input";
 import {MatPaginator, PageEvent} from "@angular/material/paginator";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {Subscription} from "rxjs";
-import {IBank} from "../../../models/bank";
 import {OperatorService} from "../../../services/operator.service";
 import {Dialog} from "@angular/cdk/dialog";
 import {Operation} from "../../../enums/operation";
-import {BankModalComponent} from "../bank-modal/bank-modal.component";
+import {IOutlet} from "../../../models/outlet";
+import {OutletModalComponent} from "../outlet-modal/outlet-modal.component";
 
 @Component({
-  selector: 'bank-list',
+  selector: 'outlet-list',
   standalone: true,
   imports: [
     MatCell,
@@ -40,17 +40,17 @@ import {BankModalComponent} from "../bank-modal/bank-modal.component";
     MatRowDef,
     MatTable,
     ReactiveFormsModule,
-    FormsModule,
-    MatHeaderCellDef
+    MatHeaderCellDef,
+    FormsModule
   ],
-  templateUrl: './bank-list.component.html',
-  styleUrl: './bank-list.component.css',
-  providers:[OperatorService]
+  templateUrl: './outlet-list.component.html',
+  styleUrl: './outlet-list.component.css',
+  providers: [OperatorService]
 })
-export class BankListComponent implements OnInit, OnDestroy{
+export class OutletListComponent implements OnInit, OnDestroy{
   subs: Subscription[] = [];
 
-  banks: IBank[];
+  outlets: IOutlet[];
 
   pageIndex = 0;
   pageSize = 5;
@@ -65,7 +65,7 @@ export class BankListComponent implements OnInit, OnDestroy{
   searchString: string | null = null;
 
   pageEvent: PageEvent;
-  displayedColumns: string[] = ['id', 'name', 'actions'];
+  displayedColumns: string[] = ['id', 'name', 'shop', 'mcc', 'actions'];
   constructor(private operatorService: OperatorService, public dialog: Dialog, private cdRef: ChangeDetectorRef) {}
 
   ngOnDestroy(): void {
@@ -89,11 +89,11 @@ export class BankListComponent implements OnInit, OnDestroy{
 
   updateDataGrid(){
     console.log(`${this.searchString}`);
-    const sub = this.operatorService.getBanks(this.pageIndex + 1, this.pageSize, this.searchString)
+    const sub = this.operatorService.getOutlets(this.pageIndex + 1, this.pageSize, this.searchString)
         .subscribe({
           next: (data) =>{
             this.pageCount = data.totalCount;
-            this.banks = data.items;
+            this.outlets = data.items;
             this.cdRef.detectChanges();
           }
         });
@@ -101,9 +101,9 @@ export class BankListComponent implements OnInit, OnDestroy{
     this.subs.push(sub);
   }
 
-  openDialog(data: IBank, operation: Operation){
+  openDialog(data: IOutlet, operation: Operation){
 
-    const dialogRef = this.dialog.open<IBank>(BankModalComponent, {
+    const dialogRef = this.dialog.open<IOutlet>(OutletModalComponent, {
       width: '250px',
       data: data,
     });
@@ -112,7 +112,7 @@ export class BankListComponent implements OnInit, OnDestroy{
       console.log("Результа: " + result?.name)
       if (result){
         if (operation == Operation.Create){
-          const sub = this.operatorService.createBank(result).subscribe({
+          const sub = this.operatorService.createOutlet(result).subscribe({
             next:(data:any) => this.updateDataGrid(),
             error: error => {
               console.log(error);
@@ -121,7 +121,7 @@ export class BankListComponent implements OnInit, OnDestroy{
           this.subs.push(sub);
         }
         else{
-          const sub = this.operatorService.updateBank(data).subscribe({
+          const sub = this.operatorService.updateOutlet(data).subscribe({
             next:(data:any) => this.updateDataGrid(),
             error: error => {
               console.log(error);
@@ -134,13 +134,13 @@ export class BankListComponent implements OnInit, OnDestroy{
     this.subs.push(sub);
   }
 
-  createBank(){
-    this.openDialog({id: 0, name: ""}, Operation.Create);
+  createOutlet(){
+    this.openDialog({id: 0, name: "", shop: {id: 0, displayName: "не выбран"}, mcc: {id: "0", displayName: "не выбран"}}, Operation.Create);
   }
 
-  editBank(id: number) {
-    const sub = this.operatorService.getBank(id).subscribe({
-      next:(data:IBank) => {
+  editOutlet(id: number) {
+    const sub = this.operatorService.getOutlet(id).subscribe({
+      next:(data:IOutlet) => {
         this.openDialog(data, Operation.Update);
       },
       error: error => {
@@ -152,8 +152,8 @@ export class BankListComponent implements OnInit, OnDestroy{
     this.subs.push(sub);
   }
 
-  deleteBank(id: number) {
-    const sub = this.operatorService.deleteBank(id).subscribe({
+  deleteOutlet(id: number) {
+    const sub = this.operatorService.deleteOutlet(id).subscribe({
       next:(data:any) => this.updateDataGrid(),
       error: error => {
         console.log(error);
@@ -161,4 +161,5 @@ export class BankListComponent implements OnInit, OnDestroy{
     });
     this.subs.push(sub);
   }
+
 }

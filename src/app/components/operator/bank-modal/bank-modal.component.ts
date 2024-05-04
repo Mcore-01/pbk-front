@@ -22,10 +22,10 @@ import {MatInput, MatInputModule} from "@angular/material/input";
     MatInputModule,
     MatInput
   ],
-  templateUrl: './bank-modal.html',
-  styleUrl: './bank-modal.css'
+  templateUrl: './bank-modal.component.html',
+  styleUrl: './bank-modal.component.css'
 })
-export class BankModal {
+export class BankModalComponent {
   constructor(
       public dialogRef: DialogRef<IBank>,
       @Inject(DIALOG_DATA) public data: IBank,

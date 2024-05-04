@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {IBank} from "../models/bank";
 import {tap} from "rxjs";
 import {IPaginatedData} from "../response-models/PaginatedData";
+import {IOutlet} from "../models/outlet";
 
 @Injectable({
   providedIn: 'root'
@@ -48,4 +49,47 @@ export class OperatorService {
         )
     }
 
+    getOutlets(pageNumber: number, pageSize: number, searchString: string | null){
+        let url = `/api/operator/Outlet?PageNumber=${pageNumber}&PageSize=${pageSize}`;
+        if (searchString){
+            url += `&SearchString=${searchString}`;
+        }
+        return this.http.get<IPaginatedData>(url);
+    }
+    getOutlet(id: number){
+        return this.http.get<IOutlet>(`/api/operator/Outlet/${id}`).pipe(
+            tap(response =>{
+                console.log(response);
+            })
+        )
+    }
+    createOutlet(data: IOutlet){
+        return this.http.post("/api/operator/Outlet", data).pipe(
+            tap(response =>{
+                console.log(response);
+            })
+        )
+    }
+    updateOutlet(data: IOutlet){
+        return this.http.put("/api/operator/Outlet", data).pipe(
+            tap(response =>{
+                console.log(response);
+            })
+        )
+    }
+    deleteOutlet(id: number){
+        return this.http.delete(`/api/operator/Outlet/${id}`).pipe(
+            tap(response =>{
+                console.log(response);
+            })
+        )
+    }
+
+    getShops(pageNumber: number, pageSize: number, searchString: string | null){
+        let url = `/api/operator/Shop?PageNumber=${pageNumber}&PageSize=${pageSize}`;
+        if (searchString){
+            url += `&SearchString=${searchString}`;
+        }
+        return this.http.get<IPaginatedData>(url);
+    }
 }
