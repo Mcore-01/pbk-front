@@ -22,7 +22,7 @@ export class RegComponent implements OnDestroy{
   errorType: object = {"": false};
 
   regSub: Subscription;
-  constructor(private http: AuthService, private route:Router)  {
+  constructor(private route:Router, private http: AuthService)  {
 
   }
 
@@ -52,7 +52,7 @@ export class RegComponent implements OnDestroy{
     }
 
     this.regSub = this.http.registration(registerRequet).subscribe({
-      next:(data: any) => console.log(data),
+      next:(data: any) => this.route.navigate(['']),
       error: error => {
         const errorCode: string  = error.error.code;
         this.showErrorBox = true;

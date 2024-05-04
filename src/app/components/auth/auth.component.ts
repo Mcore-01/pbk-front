@@ -3,7 +3,7 @@ import {HttpClientModule} from "@angular/common/http";
 import {AuthService} from "../../services/auth.service";
 import {FormsModule, NgForm} from "@angular/forms";
 import {CommonModule} from "@angular/common";
-import {RouterLink} from "@angular/router";
+import {Router, RouterLink} from "@angular/router";
 import {Subscription} from "rxjs";
 import {Logintypes} from "../../enums/logintype";
 
@@ -20,7 +20,7 @@ export class AuthComponent implements  OnDestroy{
     isInvalidAuthData: boolean = false;
 
     loginSub: Subscription;
-    constructor(private http: AuthService)  {
+    constructor(private route: Router, private http: AuthService)  {
 
     }
 
@@ -34,7 +34,7 @@ export class AuthComponent implements  OnDestroy{
         }
 
         this.loginSub = this.http.createToken(form.value.login,form.value.password).subscribe({
-            next:(data: any) => console.log(data),
+            next:(data: any) => this.route.navigate(['']),
             error: error => {
                 const errorCode: string  = error.error.code;
                 switch (errorCode){
