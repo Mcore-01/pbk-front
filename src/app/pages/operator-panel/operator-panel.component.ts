@@ -1,6 +1,5 @@
 import {Component} from '@angular/core';
 import {OperatorService} from "../../services/operator.service";
-import {BankListComponent} from "../../components/operator/bank-list/bank-list.component";
 import {RouterLink, RouterModule, RouterOutlet} from "@angular/router";
 import {MatList, MatListItem, MatSelectionList} from "@angular/material/list";
 
@@ -9,7 +8,6 @@ import {MatList, MatListItem, MatSelectionList} from "@angular/material/list";
   selector: 'app-operator-panel',
   standalone: true,
     imports: [
-        BankListComponent,
         RouterLink,
         RouterOutlet,
         RouterModule,

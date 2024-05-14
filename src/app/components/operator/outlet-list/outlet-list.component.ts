@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {
   MatCell,
   MatCellDef,
@@ -20,6 +20,7 @@ import {Dialog} from "@angular/cdk/dialog";
 import {Operation} from "../../../enums/operation";
 import {IOutlet} from "../../../models/outlet";
 import {OutletModalComponent} from "../outlet-modal/outlet-modal.component";
+import {IShop} from "../../../models/shop";
 
 @Component({
   selector: 'outlet-list',
@@ -47,53 +48,34 @@ import {OutletModalComponent} from "../outlet-modal/outlet-modal.component";
   styleUrl: './outlet-list.component.css',
   providers: [OperatorService]
 })
-export class OutletListComponent implements OnInit, OnDestroy{
+export class OutletListComponent implements  OnDestroy{
   subs: Subscription[] = [];
 
-  outlets: IOutlet[];
+  @Input() shop: IShop;
 
-  pageIndex = 0;
-  pageSize = 5;
-  pageSizeOptions = [5, 10, 20];
-
-  pageCount: number = 1;
-
-  hidePageSize = false;
-  showPageSizeOptions = true;
-  showFirstLastButtons = true;
-  disabled = false;
-  searchString: string | null = null;
-
-  pageEvent: PageEvent;
-  displayedColumns: string[] = ['id', 'name', 'shop', 'mcc', 'actions'];
-  constructor(private operatorService: OperatorService, public dialog: Dialog, private cdRef: ChangeDetectorRef) {}
+  displayedColumns: string[] = ['id', 'name', 'actions'];
+  constructor(private operatorService: OperatorService, public dialog: Dialog, private cdRef: ChangeDetectorRef) {
+  }
 
   ngOnDestroy(): void {
     for (let sub of this.subs){
       sub.unsubscribe();
     }
   }
-  ngOnInit(): void {
+  /*ngOnInit(): void {
     this.updateDataGrid()
-  }
-  handlePageEvent(e: PageEvent) {
-    this.pageEvent = e;
-    this.pageSize = e.pageSize;
-    this.pageIndex = e.pageIndex;
-    this.updateDataGrid();
-  }
+  }*/
+
 
   onKeydown(event: any){
     event.preventDefault();
   }
 
   updateDataGrid(){
-    console.log(`${this.searchString}`);
-    const sub = this.operatorService.getOutlets(this.pageIndex + 1, this.pageSize, this.searchString)
+    const sub = this.operatorService.getShop(this.shop.id)
         .subscribe({
           next: (data) =>{
-            this.pageCount = data.totalCount;
-            this.outlets = data.items;
+            this.shop = data;
             this.cdRef.detectChanges();
           }
         });
@@ -109,7 +91,7 @@ export class OutletListComponent implements OnInit, OnDestroy{
     });
 
     const sub = dialogRef.closed.subscribe(result => {
-      console.log("Результа: " + result?.name)
+      console.log("Результат: " + result?.name)
       if (result){
         if (operation == Operation.Create){
           const sub = this.operatorService.createOutlet(result).subscribe({
@@ -135,7 +117,7 @@ export class OutletListComponent implements OnInit, OnDestroy{
   }
 
   createOutlet(){
-    this.openDialog({id: 0, name: "", shop: {id: 0, displayName: "не выбран"}, mcc: {id: "0", displayName: "не выбран"}}, Operation.Create);
+    this.openDialog({id: 0, name: "", shop: {id: this.shop.id, displayName: this.shop.name}, mcc: {id: "", displayName: ""}}, Operation.Create);
   }
 
   editOutlet(id: number) {

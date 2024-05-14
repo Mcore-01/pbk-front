@@ -1,0 +1,14 @@
+.add-form{
+    width: 35vw;
+}
+
+.field-data {
+    width: 100%;
+}
+
+.control-form-button{
+    display: flex;
+    justify-content: right;
+
+    gap: 20px
+}

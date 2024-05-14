@@ -1,0 +1,16 @@
+<app-modal (isBackgroundClicked)="closeDialog($event)">
+
+    <div class="add-form">
+        <mat-form-field class="field-data">
+            <mat-label>Название магазина</mat-label>
+            <input matInput placeholder="Введите название магазина" [(ngModel)]="data.shop.name" [disabled]="isViewingShop">
+        </mat-form-field>
+
+        <div class="control-form-button" *ngIf="!isViewingShop">
+            <button mat-flat-button color="primary" (click)="dialogRef.close(data.shop)">Сохранить</button>
+            <button mat-flat-button color="primary" (click)="dialogRef.close()">Отмена</button>
+        </div>
+    </div>
+
+    <outlet-list *ngIf="isViewingShop" [shop]="data.shop"></outlet-list>
+</app-modal>

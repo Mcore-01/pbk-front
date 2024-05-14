@@ -1,0 +1,17 @@
+:host{
+    width: 100%;
+    height: 100%;
+}
+
+.header-control-table{
+    display: grid;
+    align-items: center;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr 1fr;
+
+    padding: 20px;
+}
+
+.search-field{
+    width: 20vw;
+}

@@ -12,6 +12,8 @@ import {MatAutocomplete, MatAutocompleteTrigger, MatOption} from "@angular/mater
 import {AsyncPipe} from "@angular/common";
 import {OperatorService} from "../../../services/operator.service";
 import {HttpClient, HttpClientModule, HttpHandler} from "@angular/common/http";
+import {IOutlet} from "../../../models/outlet";
+import {IMcc} from "../../../models/mcc";
 
 @Component({
   selector: 'outlet-modal',
@@ -36,39 +38,58 @@ import {HttpClient, HttpClientModule, HttpHandler} from "@angular/common/http";
 })
 
 export class OutletModalComponent implements OnInit{
-  selectedShop: IShop | null;
+  selectedMCC: IMcc | null;
+
   subs: Subscription[] = [];
   constructor(
       private operatorService: OperatorService,
       private cdRef: ChangeDetectorRef,
-      public dialogRef: DialogRef<IBank>,
-      @Inject(DIALOG_DATA) public data: IBank,
+      public dialogRef: DialogRef<IOutlet>,
+      @Inject(DIALOG_DATA) public data: IOutlet,
   ) {}
 
   closeDialog(event:any){
-    this.dialogRef.close()
-  }
-  myControl = new FormControl<string | IShop>('');
 
-  filteredOptions: Observable<IShop[]>;
+    if (this.selectedMCC) {
+      const mccData = this.data.mcc;
+      mccData.id = this.selectedMCC.code;
+      mccData.displayName = this.selectedMCC.name;
+
+      this.dialogRef.close(this.data);
+    }
+    else {
+      this.dialogRef.close();
+    }
+
+  }
+  myControl = new FormControl<string | IMcc>('');
+
+  filteredMCC: Observable<IMcc[]>;
 
   ngOnInit() {
-    this.filteredOptions = this.myControl.valueChanges.pipe(
+    const mccData = this.data.mcc;
+    if (mccData.id != ""){
+      const mcc: IMcc = {code: mccData.id, name: mccData.displayName};
+      this.selectedMCC = mcc;
+      this.myControl.setValue(mcc);
+    }
+
+    this.filteredMCC = this.myControl.valueChanges.pipe(
         startWith(''),
         switchMap(value => {
           const name = typeof value === 'string' ? value : value?.name;
-          return this.operatorService.getShops(1, 10, name as string);
+          return this.operatorService.getAllMCC(1, 10, name as string);
         }),
         map(response => response.items)
     );
   }
 
-  displayFn(shop: IShop): string {
-    return shop && shop.name ? shop.name : '';
+  displayFn(mcc: IMcc): string {
+    return mcc && mcc.name ? mcc.name : '';
   }
   optionSelected(event: any) {
-    this.selectedShop = event.option.value;
+    this.selectedMCC = event.option.value;
 
-    console.log(this.selectedShop)
+    console.log(this.selectedMCC)
   }
 }
