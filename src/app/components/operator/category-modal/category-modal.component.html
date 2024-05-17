@@ -1,0 +1,16 @@
+<app-modal (isBackgroundClicked)="closeDialog($event)">
+
+    <div class="add-form">
+        <mat-form-field class="field-data">
+            <mat-label>Категория</mat-label>
+            <input matInput placeholder="Введите название категории" [(ngModel)]="data.name">
+        </mat-form-field>
+
+        <mcc-list [mccs]="data.mccs" (addNewMcc)="addMcc($event)" (deleteMcc)="deleteMcc($event)"></mcc-list>
+        <div class="control-form-button">
+            <button mat-flat-button color="primary" (click)="dialogRef.close(data)">Сохранить</button>
+            <button mat-flat-button color="primary" (click)="dialogRef.close()">Отмена</button>
+        </div>
+    </div>
+
+</app-modal>

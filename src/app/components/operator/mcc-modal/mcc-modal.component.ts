@@ -1,56 +1,55 @@
 import {ChangeDetectorRef, Component, Inject, OnInit} from '@angular/core';
+import {IMcc} from "../../../models/mcc";
+import {map, Observable, startWith, Subscription, switchMap} from "rxjs";
+import {OperatorService} from "../../../services/operator.service";
+import {DIALOG_DATA, DialogRef} from "@angular/cdk/dialog";
+import {IOutlet} from "../../../models/outlet";
 import {FormControl, FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {AsyncPipe} from "@angular/common";
+import {MatAutocomplete, MatAutocompleteTrigger, MatOption} from "@angular/material/autocomplete";
 import {MatButton} from "@angular/material/button";
 import {MatFormField, MatLabel} from "@angular/material/form-field";
 import {MatInput} from "@angular/material/input";
 import {ModalComponent} from "../../modal/modal.component";
-import {DIALOG_DATA, DialogRef} from "@angular/cdk/dialog";
-import {IBank} from "../../../models/bank";
-import {map, Observable, startWith, Subscription, switchMap} from "rxjs";
-import {IShop} from "../../../models/shop";
-import {MatAutocomplete, MatAutocompleteTrigger, MatOption} from "@angular/material/autocomplete";
-import {AsyncPipe} from "@angular/common";
-import {OperatorService} from "../../../services/operator.service";
-import {HttpClient, HttpClientModule, HttpHandler} from "@angular/common/http";
-import {IOutlet} from "../../../models/outlet";
-import {IMcc} from "../../../models/mcc";
+import {HttpClientModule} from "@angular/common/http";
+import {IDisplayModel} from "../../../models/displaymodel";
 
 @Component({
-  selector: 'outlet-modal',
+  selector: 'mcc-modal',
   standalone: true,
   imports: [
-    FormsModule,
+    AsyncPipe,
+    MatAutocomplete,
+    MatAutocompleteTrigger,
     MatButton,
     MatFormField,
     MatInput,
     MatLabel,
-    ModalComponent,
-    MatAutocomplete,
-    ReactiveFormsModule,
-    MatAutocompleteTrigger,
-    AsyncPipe,
     MatOption,
+    ModalComponent,
+    ReactiveFormsModule,
+    FormsModule,
     HttpClientModule
   ],
-  templateUrl: './outlet-modal.component.html',
-  styleUrl: './outlet-modal.component.css',
-  providers: [OperatorService]
+  templateUrl: './mcc-modal.component.html',
+  styleUrl: './mcc-modal.component.css',
+  providers:[OperatorService]
 })
-
-export class OutletModalComponent implements OnInit{
+export class MccModalComponent implements OnInit{
   selectedMCC: IMcc | null;
 
   subs: Subscription[] = [];
   constructor(
       private operatorService: OperatorService,
-      public dialogRef: DialogRef<IOutlet>,
-      @Inject(DIALOG_DATA) public data: IOutlet,
+      private cdRef: ChangeDetectorRef,
+      public dialogRef: DialogRef<IDisplayModel<string>>,
+      @Inject(DIALOG_DATA) public data: IDisplayModel<string>,
   ) {}
 
   closeDialog(event:any){
 
     if (this.selectedMCC) {
-      const mccData = this.data.mcc;
+      const mccData = this.data;
       mccData.id = this.selectedMCC.code;
       mccData.displayName = this.selectedMCC.name;
 
@@ -66,9 +65,8 @@ export class OutletModalComponent implements OnInit{
   filteredMCC: Observable<IMcc[]>;
 
   ngOnInit() {
-    const mccData = this.data.mcc;
-    if (mccData.id != ""){
-      const mcc: IMcc = {code: mccData.id, name: mccData.displayName};
+    if (this.data.id != ""){
+      const mcc: IMcc = {code: this.data.id, name: this.data.displayName};
       this.selectedMCC = mcc;
       this.myControl.setValue(mcc);
     }
@@ -88,5 +86,7 @@ export class OutletModalComponent implements OnInit{
   }
   optionSelected(event: any) {
     this.selectedMCC = event.option.value;
+
+    console.log(this.selectedMCC)
   }
 }

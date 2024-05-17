@@ -1,0 +1,20 @@
+<app-modal (isBackgroundClicked)="closeDialog($event)">
+
+    <div class="add-form">
+
+        <mat-form-field class="field-data">
+            <mat-label>МСС</mat-label>
+            <input type="text" matInput [formControl]="myControl" [matAutocomplete]="auto">
+            <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn" (optionSelected)="optionSelected($event)">
+                @for (option of filteredMCC | async; track option) {
+                    <mat-option [value]="option">{{option.name}}</mat-option>
+                }
+            </mat-autocomplete>
+        </mat-form-field>
+
+        <div class="control-form-button">
+            <button mat-flat-button color="primary" (click)="closeDialog(data)">Сохранить</button>
+            <button mat-flat-button color="primary" (click)="dialogRef.close()">Отмена</button>
+        </div>
+    </div>
+</app-modal>
