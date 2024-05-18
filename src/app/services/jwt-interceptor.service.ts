@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from "@angular/common/http";
-import {Observable} from "rxjs";
+import {catchError, Observable, throwError} from "rxjs";
 import {Router} from "@angular/router";
 
 @Injectable({
@@ -18,7 +18,13 @@ export class JwtInterceptor implements HttpInterceptor{
                 headers: req.headers.set("Authorization",
                     "Bearer " + token)
             })
-            return next.handle(reqWithJWT);
+            return next.handle(reqWithJWT).pipe(catchError(error => {
+                if (!!error.status && error.status === 401) {
+                    this.router.navigate(['/auth']);
+                    return throwError(error);
+                }
+                return throwError(error);
+            }));
         }
         else{
             this.router.navigate(['/auth']);

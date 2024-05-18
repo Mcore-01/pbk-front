@@ -23,3 +23,7 @@ a{
 a:hover{
     background-color: rgb(59, 66, 66);
 }
+
+nav a.active {
+    color: #86cec2;
+}
