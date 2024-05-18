@@ -53,8 +53,8 @@ export class BankListComponent implements OnInit, OnDestroy{
   banks: IBank[];
 
   pageIndex = 0;
-  pageSize = 5;
-  pageSizeOptions = [5, 10, 20];
+  pageSize = 15;
+  pageSizeOptions = [15, 20, 25];
 
   pageCount: number = 1;
 

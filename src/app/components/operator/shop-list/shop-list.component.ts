@@ -54,8 +54,8 @@ export class ShopListComponent implements OnInit, OnDestroy{
     shops: IShop[];
 
     pageIndex = 0;
-    pageSize = 5;
-    pageSizeOptions = [5, 10, 20];
+    pageSize = 15;
+    pageSizeOptions = [15, 20, 25];
 
     pageCount: number = 1;
 

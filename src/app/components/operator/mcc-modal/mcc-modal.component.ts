@@ -89,4 +89,8 @@ export class MccModalComponent implements OnInit{
 
     console.log(this.selectedMCC)
   }
+
+  getDisplayName(option: any){
+    return `${option.name} (${option.code})`
+  }
 }

@@ -11,7 +11,7 @@
                 <input type="text" matInput [formControl]="myControl" [matAutocomplete]="auto">
                 <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn" (optionSelected)="optionSelected($event)">
                     @for (option of filteredMCC | async; track option) {
-                        <mat-option [value]="option">{{option.name}}</mat-option>
+                        <mat-option [value]="option">{{getDisplayName(option)}}</mat-option>
                     }
                 </mat-autocomplete>
             </mat-form-field>

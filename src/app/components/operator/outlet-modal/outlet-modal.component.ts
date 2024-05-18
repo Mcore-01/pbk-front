@@ -84,9 +84,13 @@ export class OutletModalComponent implements OnInit{
   }
 
   displayFn(mcc: IMcc): string {
-    return mcc && mcc.name ? mcc.name : '';
+    return mcc && mcc.name ? mcc.name  : '';
   }
   optionSelected(event: any) {
     this.selectedMCC = event.option.value;
+  }
+
+  getDisplayName(option: any){
+    return `${option.name} (${option.code})`
   }
 }
