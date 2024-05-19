@@ -2,12 +2,8 @@
     <button mat-icon-button color="accent" (click)="createOutlet()">
         <mat-icon>add</mat-icon>
     </button>
-
-<!--    <mat-form-field class="search-field">
-        <input matInput type="text" placeholder="Название торговой точки..." [(ngModel)]="searchString" (keydown.enter)="onKeydown($event)" (keyup.enter)="updateDataGrid()">
-    </mat-form-field>-->
 </div>
-<table mat-table [dataSource]="shop.outlets" class="mat-elevation-z8">
+<table mat-table [dataSource]="shop.outlets">
 
     <ng-container matColumnDef="id">
         <th mat-header-cell *matHeaderCellDef> ID </th>

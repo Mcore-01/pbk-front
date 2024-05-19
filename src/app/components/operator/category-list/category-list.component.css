@@ -1,6 +1,10 @@
 :host{
     width: 100%;
     height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .header-control-table{
@@ -14,4 +18,8 @@
 
 .search-field{
     width: 20vw;
+}
+
+.paginator{
+    margin: 10px 30px;
 }

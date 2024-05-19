@@ -2,10 +2,11 @@ import {Component} from '@angular/core';
 import {OperatorService} from "../../services/operator.service";
 import {RouterLink, RouterModule, RouterOutlet} from "@angular/router";
 import {MatList, MatListItem, MatSelectionList} from "@angular/material/list";
+import {LogoutButtonComponent} from "../../components/logout-button/logout-button.component";
 
 
 @Component({
-  selector: 'app-operator-panel',
+  selector: 'operator-panel',
   standalone: true,
     imports: [
         RouterLink,
@@ -13,7 +14,8 @@ import {MatList, MatListItem, MatSelectionList} from "@angular/material/list";
         RouterModule,
         MatList,
         MatListItem,
-        MatSelectionList
+        MatSelectionList,
+        LogoutButtonComponent
     ],
   templateUrl: './operator-panel.component.html',
   styleUrl: './operator-panel.component.css',

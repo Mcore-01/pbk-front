@@ -24,11 +24,7 @@ export class MainPageComponent {
       }
     })
   }
-  removeToken(){
-    console.log(`Текущий токен: ${localStorage.getItem("jwt_token")}`);
-    console.log("Удаление токена");
-    this.httpAuth.removeToken();
-  }
+
 
   giveMeUnlimitedPower(){
     this.router.navigate(['/operator']);

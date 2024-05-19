@@ -1,51 +1,54 @@
-<div class="header-control-table">
-    <button mat-icon-button color="accent" (click)="create()">
-        <mat-icon>add</mat-icon>
-    </button>
+<div>
+    <div class="header-control-table">
+        <button mat-icon-button color="accent" (click)="create()">
+            <mat-icon>add</mat-icon>
+        </button>
 
-    <mat-form-field class="search-field">
-        <input matInput type="text" placeholder="Название карты..." [(ngModel)]="searchString" (keydown.enter)="onKeydown($event)" (keyup.enter)="updateDataGrid()">
-    </mat-form-field>
+        <mat-form-field class="search-field">
+            <input matInput type="text" placeholder="Название карты..." [(ngModel)]="searchString" (keydown.enter)="onKeydown($event)" (keyup.enter)="updateDataGrid()">
+        </mat-form-field>
+    </div>
+    <table mat-table [dataSource]="categories">
+
+        <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef> ID </th>
+            <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef>Название</th>
+            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="bank">
+            <th mat-header-cell *matHeaderCellDef>Банк</th>
+            <td mat-cell *matCellDef="let element"> {{element.bank.displayName}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="typeCard">
+            <th mat-header-cell *matHeaderCellDef>Тип карты</th>
+            <td mat-cell *matCellDef="let element"> {{element.typeCard.displayName}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef>изменение/удаление</th>
+            <td mat-cell *matCellDef="let element">
+                <button mat-icon-button color="primary" (click)="edit(element.id)">
+                    <mat-icon>edit</mat-icon>
+                </button>
+                <button mat-icon-button color="warn" (click)="delete(element.id)">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
 </div>
-<table mat-table [dataSource]="categories" class="mat-elevation-z8">
-
-    <ng-container matColumnDef="id">
-        <th mat-header-cell *matHeaderCellDef> ID </th>
-        <td mat-cell *matCellDef="let element"> {{element.id}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef>Название</th>
-        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="bank">
-        <th mat-header-cell *matHeaderCellDef>Банк</th>
-        <td mat-cell *matCellDef="let element"> {{element.bank.displayName}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="typeCard">
-        <th mat-header-cell *matHeaderCellDef>Тип карты</th>
-        <td mat-cell *matCellDef="let element"> {{element.typeCard.displayName}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="actions">
-        <th mat-header-cell *matHeaderCellDef>изменение/удаление</th>
-        <td mat-cell *matCellDef="let element">
-            <button mat-icon-button color="primary" (click)="edit(element.id)">
-                <mat-icon>edit</mat-icon>
-            </button>
-            <button mat-icon-button color="warn" (click)="delete(element.id)">
-                <mat-icon>delete</mat-icon>
-            </button>
-        </td>
-    </ng-container>
-
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-</table>
 
 <mat-paginator
+        class="paginator"
         (page)="handlePageEvent($event)"
         [length]="pageCount"
         [pageSize]="pageSize"

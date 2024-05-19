@@ -14,10 +14,6 @@ import {HttpClientModule} from "@angular/common/http";
   providers:[AuthService]
 })
 export class AuthPageComponent {
-  userHasToken: boolean = localStorage.getItem("jwt-token") !== null;
   constructor(private http: AuthService) {
-  }
-  logout(){
-    this.http.removeToken();
   }
 }

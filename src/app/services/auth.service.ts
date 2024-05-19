@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {tap} from "rxjs";
-import {Logintypes} from "../enums/logintype";
 import {IRegisterRequest} from "../models/register";
 
 @Injectable({
@@ -17,7 +16,9 @@ export class AuthService {
         return  this.http.post<any>("/api/Account/login", data).pipe(
             tap(response=>{
                 if (response) {
-                    localStorage.setItem('jwt_token', response.token);
+                    localStorage.setItem('jwtToken', response.token);
+                    localStorage.setItem('userName', response.username);
+                    localStorage.setItem('userRole', response.role);
                 }
             })
         );
@@ -27,12 +28,17 @@ export class AuthService {
         return  this.http.post<any>("/api/Account/register", data).pipe(
             tap(response=>{
                 if (response) {
-                    localStorage.setItem('jwt_token', response.token);
+                    localStorage.setItem('jwtToken', response.token);
+                    localStorage.setItem('userName', response.username);
+                    localStorage.setItem('userRole', response.role);
                 }
             })
         );
     }
-    removeToken(){
-        localStorage.removeItem("jwt_token");
+
+    logout(){
+        localStorage.removeItem('jwtToken');
+        localStorage.removeItem('userName');
+        localStorage.removeItem('userRole');
     }
 }
