@@ -20,14 +20,16 @@ export class JwtInterceptor implements HttpInterceptor{
             })
             return next.handle(reqWithJWT).pipe(catchError(error => {
                 if (!!error.status && error.status === 401) {
-                    this.router.navigate(['/auth']);
-                    return throwError(error);
+                    this.router.navigate(['/auth']).then(()=>{
+                        console.log("токен не действителен, переадресация на страницу авторизации");
+                    });
+                    return throwError(()=> error);
                 }
-                return throwError(error);
+                return throwError(()=> error);
             }));
         }
         else{
-            this.router.navigate(['/auth']);
+            this.router.navigate(['/auth']).then();
         }
         return next.handle(req);
     }

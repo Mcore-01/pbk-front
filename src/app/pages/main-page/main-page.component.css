@@ -1,0 +1,108 @@
+:host{
+    display: grid;
+    grid-template-rows: 15vh 75vh 10vh;
+    height: 100vh;
+
+    background-color: black;
+}
+
+h1, h2, h3, h4{
+    color: white;
+}
+.red-rounded-link{
+    background-color: #ff5659;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 30px;
+
+    text-decoration: none;
+    color: #ffffff;
+}
+
+/*header*/
+header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+}
+
+.logotype{
+    color: white;
+    font-size: 5vh;
+    cursor: default;
+}
+
+
+.login-button{
+    width: 120px;
+    height: 40px;
+}
+.login-button:hover{
+    background-color: #e34349;
+}
+
+.icon{
+    width: 40px;
+    height: 40px;
+    background-image: url("/./assets/icons/person.svg");
+}
+
+/*main*/
+main{
+    padding: 50px;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.about-project{
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.slogan{
+    width: 50vw;
+    font-size: 10vh;
+    word-break: keep-all;
+}
+.slogan span{
+    color: #ff5557;
+}
+.select-card-button{
+    width: 200px;
+    height: 80px;
+
+    border-radius: 50px;
+
+    font-size: 30px;
+}
+
+.card-images{
+    width: 40vw;
+    height: 25vw;
+
+    background-image: url("/./assets/images/cards.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+
+
+    justify-self: center;
+}
+
+/*footer*/
+footer{
+    height: 10vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+

@@ -8,6 +8,10 @@
             <a routerLink="/operator/card" routerLinkActive="active">Карты</a>
         </nav>
     </div>
-    <logout-button class="logout-button"></logout-button>
+
+
+    <button class="logout-button" mat-icon-button color="warn" (click)="logout()">
+        <mat-icon>logout</mat-icon>
+    </button>
 </header>
 <router-outlet></router-outlet>

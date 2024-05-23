@@ -1,32 +1,24 @@
 import { Component } from '@angular/core';
-import {Router} from "@angular/router";
-import {ValuesService} from "../../services/values.service";
+import {Router, RouterLink, RouterLinkActive} from "@angular/router";
 import {AuthService} from "../../services/auth.service";
+import {MatIcon} from "@angular/material/icon";
+import {MatButton, MatIconButton} from "@angular/material/button";
 
 @Component({
   selector: 'app-main-page',
   standalone: true,
-  imports: [],
+  imports: [
+    MatIcon,
+    MatIconButton,
+    MatButton,
+    RouterLink,
+    RouterLinkActive
+  ],
   templateUrl: './main-page.component.html',
-  styles: ``,
-  providers: [ValuesService, AuthService]
+  styleUrl: './main-page.component.css',
+  providers: [AuthService]
 })
 export class MainPageComponent {
-  constructor(private router: Router,private http: ValuesService, private httpAuth: AuthService) {
-  }
-  openAuthPage(){
-    this.router.navigate(['/auth']);
-  }
-  getValues(){
-    this.http .getValues().subscribe({
-      next: (data:any) =>{
-        console.log(data);
-      }
-    })
-  }
-
-
-  giveMeUnlimitedPower(){
-    this.router.navigate(['/operator']);
+  constructor(private router: Router, private authService: AuthService) {
   }
 }

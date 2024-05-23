@@ -5,7 +5,6 @@ import {FormsModule, NgForm} from "@angular/forms";
 import {CommonModule} from "@angular/common";
 import {Router, RouterLink} from "@angular/router";
 import {Subscription} from "rxjs";
-import {Logintypes} from "../../enums/logintype";
 
 @Component({
     selector: 'app-auth',
@@ -15,12 +14,12 @@ import {Logintypes} from "../../enums/logintype";
     styleUrl: "./auth.component.css",
     providers:[AuthService]
 })
-export class AuthComponent implements  OnDestroy{
+export class AuthComponent implements OnDestroy{
     errorMessage: string = "";
     isInvalidAuthData: boolean = false;
 
     loginSub: Subscription;
-    constructor(private route: Router, private http: AuthService)  {
+    constructor(private route: Router, private authService: AuthService)  {
 
     }
 
@@ -33,8 +32,15 @@ export class AuthComponent implements  OnDestroy{
             return;
         }
 
-        this.loginSub = this.http.createToken(form.value.login,form.value.password).subscribe({
-            next:(data: any) => this.route.navigate(['']),
+        this.loginSub = this.authService.createToken(form.value.login, form.value.password).subscribe({
+            next:(data: any) => {
+                if (this.authService.isOperator()){
+                    this.route.navigate(['/operator/bank']).then()
+                }
+                else{
+                    this.route.navigate(['']).then()
+                }
+            },
             error: error => {
                 const errorCode: string  = error.error.code;
                 switch (errorCode){

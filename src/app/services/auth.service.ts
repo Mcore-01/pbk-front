@@ -41,4 +41,13 @@ export class AuthService {
         localStorage.removeItem('userName');
         localStorage.removeItem('userRole');
     }
+
+    isOperator(){
+        const role = localStorage.getItem("userRole");
+        if (role){
+            return role == 'Operator';
+        }
+
+        return false;
+    }
 }

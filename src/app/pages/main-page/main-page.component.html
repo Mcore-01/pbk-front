@@ -1,2 +1,17 @@
-<button (click)="openAuthPage()" >Открыть страницу авторизации</button>
-<button (click)="giveMeUnlimitedPower()" >unlimited power</button>
+<header>
+    <div class="logotype">PBK card</div>
+    <a routerLink="/auth" routerLinkActive="active" class="login-button red-rounded-link">Войти</a>
+</header>
+
+<main>
+    <div class="about-project">
+        <h1 class="slogan"><span>Подберем</span> лучшую банковскую <span>карту</span></h1>
+
+        <a routerLink="/auth" routerLinkActive="active" class="select-card-button red-rounded-link">Подобрать</a>
+    </div>
+    <div class="card-images"></div>
+</main>
+
+<footer>
+    <h3>&copy; 2024 PBK. Все права защищены.</h3>
+</footer>
