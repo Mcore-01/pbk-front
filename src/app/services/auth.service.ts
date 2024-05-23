@@ -50,4 +50,8 @@ export class AuthService {
 
         return false;
     }
+
+    getUserName(){
+        return localStorage.getItem("userName")
+    }
 }

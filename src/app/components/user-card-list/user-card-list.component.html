@@ -1,0 +1,20 @@
+<div class="user-card-container">
+    <table>
+        <thead>
+        <tr>
+            <th>Карта</th>
+            <th>Банк</th>
+            <th>Тип карты</th>
+        </tr>
+        </thead>
+        <tbody>
+            @for(card of userCards; track card){
+                <tr>
+                    <td>{{card.card.displayName}}</td>
+                    <td>{{card.bank.displayName}}</td>
+                    <td>{{card.typeCard.displayName}}</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

@@ -7,6 +7,7 @@ import {BankListComponent} from "./components/operator/bank-list/bank-list.compo
 import {ShopListComponent} from "./components/operator/shop-list/shop-list.component";
 import {CategoryListComponent} from "./components/operator/category-list/category-list.component";
 import {CardListComponent} from "./components/operator/card-list/card-list.component";
+import {WelcomePageComponent} from "./pages/welcome-page/welcome-page.component";
 
 const operatorPanelChildrenRoutes: Routes = [
     { path: "bank", component: BankListComponent},
@@ -16,7 +17,8 @@ const operatorPanelChildrenRoutes: Routes = [
 ];
 
 export const routes: Routes = [
-    {path: '', component: MainPageComponent},
+    {path: '', component: WelcomePageComponent},
+    {path: 'main', component: MainPageComponent},
     {path: 'auth', component: AuthPageComponent},
     {path: 'reg', component: RegPageComponent},
     {path: 'operator', component: OperatorPanelComponent, children: operatorPanelChildrenRoutes}

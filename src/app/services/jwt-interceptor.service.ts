@@ -29,6 +29,9 @@ export class JwtInterceptor implements HttpInterceptor{
             }));
         }
         else{
+            if (this.router.url == '/reg' || this.router.url == '/'){
+                return next.handle(req);
+            }
             this.router.navigate(['/auth']).then();
         }
         return next.handle(req);

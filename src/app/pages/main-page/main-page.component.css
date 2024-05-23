@@ -1,14 +1,10 @@
 :host{
     display: grid;
-    grid-template-rows: 6vh 88vh 6vh;
+    grid-template-rows: 6vh 94vh;
     height: 100%;
 
     background: linear-gradient(-45deg, rgba(58, 79, 184, 1), rgba(19, 21, 65, 1));
     padding: 0 20px;
-}
-
-h1, h2, h3, h4{
-    color: white;
 }
 
 /*header*/
@@ -24,6 +20,16 @@ header{
     cursor: default;
 }
 
+.user-profile{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+.user-profile h1{
+    color: white;
+    font-weight: normal;
+}
 .login-button{
     width: 120px;
     height: 40px;
@@ -53,125 +59,46 @@ header{
 
 /*main*/
 main{
-
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: repeat(3, 1fr);
+    padding-top: 10px;
 
     border-top: 3px solid white;
-    border-bottom: 3px solid white;
 }
 
-.project-info{
+.tabs-container{
     display: flex;
-    flex-direction: row;
-
-    padding: 20px 0;
-    gap: 100px;
-}
-
-.about-project{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 40px;
-
-    width: 50%;
-    height: 45vh;
-    padding: 20px;
-
-    border: 3px solid rgba(130, 130, 130, 0.7);
-    border-radius: 15px;
-}
-.about-project h1{
-    font-size: 28px;
-    font-weight: normal;
-    word-break: keep-all;
-}
-.about-project p{
-    font-size: 28px;
-
+    align-items: end;
     color: white;
 }
-.image-container{
+
+.tab-item{
     display: grid;
     place-items: center;
 
-    width: 50%;
+    background: linear-gradient(-45deg, rgba(39, 49, 122, 0.7), rgba(52, 69, 164, 0.7));
 
-    overflow: hidden;
+    width: 175px;
+    height: 23px;
+    border: 2px solid white;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom: none;
 
-    border: 3px solid rgba(130, 130, 130, 0.7);
-    border-radius: 15px;
-}
-.card-images{
-    width: 150%;
-    height: 150%;
-
-    background-image: url("/./assets/images/cards.png");
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    vertical-align: middle;
-
-
-    justify-self: center;
-}
-
-.select-button-container{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-}
-
-.select-button-container h2{
-    font-weight: normal;
-}
-.select-card-button{
-    background-color: rgba(0, 34, 211, 1);
-
-    width: fit-content;
-    padding: 0 100px;
-
-    border-radius: 10px;
-
-    border: 3px solid rgba(130, 130, 130, 0.7);
-    font-size: 28px;
+    font-size: 12px;
     color: white;
 }
 
-.select-card-button:hover{
-    background-color: rgb(45, 74, 231);
+.active-tab{
+    height: 31px;
+    background-color: rgba(130, 130, 130, 0.7);
+
+    font-size: 16px;
 }
 
-.about-us{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+.tab-container{
 
-    border: 3px solid rgba(130, 130, 130, 0.7);
-    border-radius: 15px;
+    height: 93%;
 
-    margin: 10px 0 20px 0;
+    background: linear-gradient(-45deg, rgba(39, 49, 122, 0.7), rgba(52, 69, 164, 0.7));
+
+    border: 2px solid white;
 }
-.about-us ul{
-    list-style: none;
-}
-.about-us li{
-    color: white;
-    font-size: 24px;
-}
-.about-us a{
-    color: white;
-    font-size: 24px;
-}
-
-/*footer*/
-footer{
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-

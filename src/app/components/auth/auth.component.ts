@@ -38,7 +38,7 @@ export class AuthComponent implements OnDestroy{
                     this.route.navigate(['/operator/bank']).then()
                 }
                 else{
-                    this.route.navigate(['']).then()
+                    this.route.navigate(['/main']).then()
                 }
             },
             error: error => {
