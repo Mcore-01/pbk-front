@@ -1,25 +1,14 @@
 :host{
     display: grid;
-    grid-template-rows: 15vh 75vh 10vh;
-    height: 100vh;
+    grid-template-rows: 6vh 88vh 6vh;
+    height: 100%;
 
-    background-color: black;
+    background: linear-gradient(-45deg, rgba(58, 79, 184, 1), rgba(19, 21, 65, 1));
+    padding: 0 20px;
 }
 
 h1, h2, h3, h4{
     color: white;
-}
-.red-rounded-link{
-    background-color: #ff5659;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    border-radius: 30px;
-
-    text-decoration: none;
-    color: #ffffff;
 }
 
 /*header*/
@@ -27,22 +16,33 @@ header{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 50px;
 }
 
 .logotype{
     color: white;
-    font-size: 5vh;
+    font-size: 40px;
     cursor: default;
 }
-
 
 .login-button{
     width: 120px;
     height: 40px;
+    background-color: rgba(0, 34, 211, 1);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 30px;
+
+    border-style: none;
+    color: #ffffff;
+    font-size: 28px;
+
+    padding: 0 60px;
 }
 .login-button:hover{
-    background-color: #e34349;
+    background-color: rgb(45, 74, 231);
 }
 
 .icon{
@@ -53,38 +53,60 @@ header{
 
 /*main*/
 main{
-    padding: 50px;
 
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(3, 1fr);
+
+    border-top: 3px solid white;
+    border-bottom: 3px solid white;
+}
+
+.project-info{
+    display: flex;
+    flex-direction: row;
+
+    padding: 20px 0;
+    gap: 100px;
 }
 
 .about-project{
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 40px;
-}
 
-.slogan{
-    width: 50vw;
-    font-size: 10vh;
+    width: 50%;
+    height: 45vh;
+    padding: 20px;
+
+    border: 3px solid rgba(130, 130, 130, 0.7);
+    border-radius: 15px;
+}
+.about-project h1{
+    font-size: 28px;
+    font-weight: normal;
     word-break: keep-all;
 }
-.slogan span{
-    color: #ff5557;
+.about-project p{
+    font-size: 28px;
+
+    color: white;
 }
-.select-card-button{
-    width: 200px;
-    height: 80px;
+.image-container{
+    display: grid;
+    place-items: center;
 
-    border-radius: 50px;
+    width: 50%;
 
-    font-size: 30px;
+    overflow: hidden;
+
+    border: 3px solid rgba(130, 130, 130, 0.7);
+    border-radius: 15px;
 }
-
 .card-images{
-    width: 40vw;
-    height: 25vw;
+    width: 150%;
+    height: 150%;
 
     background-image: url("/./assets/images/cards.png");
     background-size: contain;
@@ -96,9 +118,56 @@ main{
     justify-self: center;
 }
 
+.select-button-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.select-button-container h2{
+    font-weight: normal;
+}
+.select-card-button{
+    background-color: rgba(0, 34, 211, 1);
+
+    width: fit-content;
+    padding: 0 100px;
+
+    border-radius: 10px;
+
+    border: 3px solid rgba(130, 130, 130, 0.7);
+    font-size: 28px;
+    color: white;
+}
+
+.select-card-button:hover{
+    background-color: rgb(45, 74, 231);
+}
+
+.about-us{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    border: 3px solid rgba(130, 130, 130, 0.7);
+    border-radius: 15px;
+
+    margin: 10px 0 20px 0;
+}
+.about-us ul{
+    list-style: none;
+}
+.about-us li{
+    color: white;
+    font-size: 24px;
+}
+.about-us a{
+    color: white;
+    font-size: 24px;
+}
+
 /*footer*/
 footer{
-    height: 10vh;
 
     display: flex;
     justify-content: center;
