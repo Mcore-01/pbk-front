@@ -13,9 +13,7 @@ import {ITypeCard} from "../models/typecard";
   providedIn: 'root'
 })
 export class OperatorService {
-
     constructor(private http:HttpClient) { }
-
 
     getBanks(pageNumber: number, pageSize: number, searchString: string | null){
         let url = `/api/operator/Bank?PageNumber=${pageNumber}&PageSize=${pageSize}`;
