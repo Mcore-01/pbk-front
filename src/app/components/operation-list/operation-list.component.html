@@ -1,0 +1,38 @@
+<main>
+    <div class="operation-container">
+        <table>
+            <thead>
+            <tr>
+                <th class="line-checkbox"></th>
+                <th>ID</th>
+                <th>Торговая точка</th>
+                <th>Сумма</th>
+                <th class="edit-field"></th>
+            </tr>
+            </thead>
+            <tbody>
+                @for(operation of operations; track operation){
+                    <tr>
+                        <td class="line-checkbox"><input type="checkbox" id="checkbox-rect1" name="check" (click)="stateCheckboxChanged($event, operation.id)"></td>
+                        <td>{{operation.id}}</td>
+                        <td>{{operation.outlet.displayName}}</td>
+                        <td>{{operation.sum}}</td>
+                        <td class="edit-field"><button mat-icon-button class="edit-button"><mat-icon>edit</mat-icon></button></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="file-upload-panel">
+        <h2>Вы можете заполнить операции автоматически загрузив файл банковской выписки.</h2>
+        <p>Поддерживающиеся банки на данный момент:</p>
+        <p>- Тинькофф</p>
+        <button class="blue-button">Загрузить</button>
+    </div>
+
+    <div class="button-container">
+        <button class="blue-button" (click)="createOperation()">Добавить</button>
+        <button class="gray-button" (click)="deleteOperations()">Удалить</button>
+    </div>
+    <button class="blue-button" id="select-card" (click)="clickSelectCardButton()">Подобрать карты</button>
+</main>

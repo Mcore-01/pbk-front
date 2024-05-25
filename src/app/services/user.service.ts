@@ -18,6 +18,11 @@ export class UserService {
     return this.http.get<IUserCard[]>(url);
   }
 
+  executeAlgorithm(){
+    let url = `/api/UserCard/algorithm`;
+    return this.http.get<IUserCard[]>(url);
+  }
+
   getUserOperations(){
     let url = '/api/Operation';
     return this.http.get<IOperation[]>(url);
@@ -29,7 +34,7 @@ export class UserService {
   }
 
   createUserOperation(data: IOperation){
-    return this.http.post("/api/Operation", data);
+    return this.http.post<number>("/api/Operation", data);
   }
   updateUserOperation(data: IBank){
     return this.http.put("/api/Operation", data);
@@ -39,6 +44,6 @@ export class UserService {
   }
 
   deleteListUserOperation(ids: number[]){
-    return this.http.request( 'delete',`/api/Operation/list`, {body: JSON.stringify(ids)});
+    return this.http.request( 'delete',`/api/Operation/list`, {body: ids});
   }
 }

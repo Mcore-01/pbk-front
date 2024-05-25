@@ -1,54 +1,27 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {UserService} from "../../services/user.service";
 import {IUserCard} from "../../models/usercard";
-import {
-  MatCell,
-  MatCellDef,
-  MatColumnDef,
-  MatHeaderCell, MatHeaderCellDef,
-  MatHeaderRow,
-  MatHeaderRowDef,
-  MatRow, MatRowDef, MatTable
-} from "@angular/material/table";
-import {MatIcon} from "@angular/material/icon";
-import {MatIconButton} from "@angular/material/button";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'user-card-list',
   standalone: true,
-  imports: [
-    MatCell,
-    MatCellDef,
-    MatColumnDef,
-    MatHeaderCell,
-    MatHeaderRow,
-    MatHeaderRowDef,
-    MatIcon,
-    MatIconButton,
-    MatRow,
-    MatRowDef,
-    MatTable,
-    MatHeaderCellDef
-  ],
+  imports: [],
   templateUrl: './user-card-list.component.html',
   styleUrl: './user-card-list.component.css',
   providers: [UserService]
 })
-export class UserCardListComponent implements OnInit{
+export class UserCardListComponent implements OnDestroy{
 
-  userCards: IUserCard[] = [];
-  displayedColumns: string[] = ['card', 'bank', 'typeCard'];
+  @Input() userCards: IUserCard[] = [];
+  subs: Subscription[] = [];
   constructor(private userService: UserService) {
   }
 
-  ngOnInit(): void {
-      this.userService.getUserCards().subscribe({
-        next:(data) =>{
-          this.userCards = data;
-        },
-        error:error=>{
-          console.log(error);
-        }
-    })
+  ngOnDestroy(): void {
+    for (let sub of this.subs){
+      sub.unsubscribe();
+    }
   }
+
 }

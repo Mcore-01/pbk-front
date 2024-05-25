@@ -1,0 +1,135 @@
+:host{
+    position: relative;
+}
+
+*::-webkit-scrollbar {
+    height: 12px;
+    width: 12px;
+}
+
+main{
+
+    display: grid;
+    padding: 10px;
+    grid-template-columns: 85% 15%;
+    grid-template-rows: 90% 10%;
+
+    width: 99%;
+    height: 99%;
+}
+
+.operation-container{
+    grid-row: 1;
+    grid-column: 1;
+    border: 1px solid rgba(224, 224, 224, 1);
+    border-radius: 8px;
+
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+th, td {
+    border-bottom: 1px solid rgba(224, 224, 224, 1);
+    text-align: left;
+
+    color: white;
+
+    cursor: default;
+}
+
+th{
+    font-size: 16px;
+}
+
+td{
+    font-size: 36px;
+}
+
+.edit-field{
+    width: 20px;
+    text-align: right;
+}
+
+.edit-button{
+    background: none;
+    border-style: none;
+}
+
+.line-checkbox{
+    border: none;
+    width: 30px;
+}
+
+.line-checkbox input{
+    background:linear-gradient(-45deg, rgba(39, 49, 122, 0.7), rgba(52, 69, 164, 0.7));
+}
+
+/* upload file*/
+
+.file-upload-panel{
+    padding: 0 20px;
+
+    grid-row: 1;
+    grid-column: 2;
+    color: white;
+}
+.file-upload-panel h2{
+    font-size: 20px;
+    font-weight: normal;
+    margin-bottom: 20px;
+}
+.file-upload-panel p{
+    font-size: 15px;
+    font-weight: normal;
+}
+.file-upload-panel button{
+    margin-top: 80px;
+}
+
+.blue-button{
+     background-color: rgba(0, 34, 211, 1);
+ }
+
+.blue-button:hover{
+    background-color: rgb(45, 74, 231);
+}
+
+.gray-button{
+    background-color: rgba(70, 80, 134, 1);
+}
+
+.gray-button:hover{
+    background-color: rgb(106, 123, 199);
+}
+
+.blue-button, .gray-button{
+    font-size: 28px;
+    color: white;
+
+    padding: 10px 50px;
+
+    border: none;
+    border-radius: 25px;
+}
+
+.button-container{
+    align-self: center;
+    display: flex;
+    gap: 40px;
+}
+
+#select-card{
+    grid-row: 2;
+    grid-column: 2;
+
+    align-self: center;
+
+    width: 267px;
+    height: 37px;
+    padding: 0;
+}

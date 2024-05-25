@@ -17,9 +17,9 @@
     </div>
     <div class="tab-container">
         @if(isFirstTab){
-            <h1>Содержимое первой вкладки</h1>
+            <operation-list (clickedSelectCardButton)="updateUserCards()"></operation-list>
         } @else {
-            <user-card-list></user-card-list>
+            <user-card-list [userCards]="userCards"></user-card-list>
         }
     </div>
 </main>

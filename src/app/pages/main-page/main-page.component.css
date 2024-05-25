@@ -5,6 +5,7 @@
 
     background: linear-gradient(-45deg, rgba(58, 79, 184, 1), rgba(19, 21, 65, 1));
     padding: 0 20px;
+    overflow: hidden;
 }
 
 /*header*/
