@@ -84,6 +84,29 @@ export class OperationListComponent implements OnInit, OnDestroy{
     });
     this.subs.push(sub);
   }
+
+  updateOperation(data: IOperation){
+    const dialogRef = this.dialog.open<IOperation>(OperationModalComponent,{
+      data: data
+    });
+
+    const sub = dialogRef.closed.subscribe(result => {
+      if (result){
+        const sub = this.userService.updateUserOperation(result).subscribe({
+          next:() => {
+            this.getOperations();
+          },
+          error: error => {
+            console.log(error);
+          }
+        });
+
+        this.subs.push(sub);
+      }
+    });
+    this.subs.push(sub);
+  }
+
   async deleteOperations(){
     //список id для удаление пусть
     if (this.idsDelete.length == 0){

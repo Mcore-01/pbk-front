@@ -17,7 +17,7 @@
                         <td>{{operation.id}}</td>
                         <td>{{operation.outlet.displayName}}</td>
                         <td>{{operation.sum}}</td>
-                        <td class="edit-field"><button mat-icon-button class="edit-button"><mat-icon>edit</mat-icon></button></td>
+                        <td class="edit-field"><button mat-icon-button class="edit-button" (click)="updateOperation(operation)"><mat-icon>edit</mat-icon></button></td>
                     </tr>
                 }
             </tbody>

@@ -36,7 +36,7 @@ export class UserService {
   createUserOperation(data: IOperation){
     return this.http.post<number>("/api/Operation", data);
   }
-  updateUserOperation(data: IBank){
+  updateUserOperation(data: IOperation){
     return this.http.put("/api/Operation", data);
   }
   deleteUserOperation(id: number){

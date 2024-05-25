@@ -6,13 +6,14 @@ import {MatFormField, MatLabel} from "@angular/material/form-field";
 import {MatInput} from "@angular/material/input";
 import {ModalComponent} from "../modal/modal.component";
 import {FormControl, FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {IMcc} from "../../models/mcc";
 import {map, Observable, startWith, Subscription, switchMap} from "rxjs";
 import {OperatorService} from "../../services/operator.service";
 import {DIALOG_DATA, DialogRef} from "@angular/cdk/dialog";
 import {IOutlet} from "../../models/outlet";
 import {IOperation} from "../../models/operation";
 import {HttpClientModule} from "@angular/common/http";
+import {IMcc} from "../../models/mcc";
+import {IDisplayModel} from "../../models/displaymodel";
 
 @Component({
   selector: 'app-operation-modal',
@@ -37,7 +38,7 @@ import {HttpClientModule} from "@angular/common/http";
 })
 export class OperationModalComponent implements OnInit{
     selectedOutlet: IOutlet | null;
-    sum: number = 0;
+    sum: number = 1000;
     outletControl = new FormControl<string | IOutlet>('');
 
     filteredOutlet: Observable<IOutlet[]>;
@@ -45,13 +46,13 @@ export class OperationModalComponent implements OnInit{
     constructor(
         private operatorService: OperatorService,
         public dialogRef: DialogRef<IOperation>,
-        @Inject(DIALOG_DATA) public data: IOutlet
+        @Inject(DIALOG_DATA) public data: IOperation
     ) {}
 
     closeDialog(event:any){
         if (this.selectedOutlet) {
             const data: IOperation = {
-                id: 0, sum: this.sum, outlet: {id: this.selectedOutlet.id, displayName: this.selectedOutlet.name}
+                id: this.data.id, sum: this.sum, outlet: {id: this.selectedOutlet.id, displayName: this.selectedOutlet.name}
             }
 
             this.dialogRef.close(data);
@@ -63,6 +64,13 @@ export class OperationModalComponent implements OnInit{
     }
 
     ngOnInit() {
+        if (this.data){
+            const outletData = this.data.outlet;
+            const outlet: IOutlet = {id: outletData.id, name: outletData.displayName, mcc: {} as IDisplayModel<string>, shop: {} as IDisplayModel<number>};
+            this.selectedOutlet = outlet;
+            this.sum = this.data.sum;
+            this.outletControl.setValue(outlet);
+        }
         this.filteredOutlet = this.outletControl.valueChanges.pipe(
             startWith(''),
             switchMap(value => {
