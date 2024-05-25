@@ -1,0 +1,32 @@
+.warning-form{
+    width: 25vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 30px;
+}
+.labels-dialog{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+
+.labels-dialog h2{
+    font-weight: normal;
+    font-size: 30px;
+}
+
+.control-form-button{
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    gap: 20px
+}
+
+.accept-button{
+    width: 10vw;
+    font-size: 30px;
+    border-radius: 20px;
+}
