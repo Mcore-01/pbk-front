@@ -51,8 +51,13 @@ export class OperationModalComponent implements OnInit{
 
     closeDialog(event:any){
         if (this.selectedOutlet) {
-            const data: IOperation = {
-                id: this.data.id, sum: this.sum, outlet: {id: this.selectedOutlet.id, displayName: this.selectedOutlet.name}
+            let data: IOperation = {
+                id: 0, sum: this.sum, outlet: {id: this.selectedOutlet.id, displayName: this.selectedOutlet.name}
+            }
+            if (this.data){
+                data = {
+                    id: this.data.id, sum: this.sum, outlet: {id: this.selectedOutlet.id, displayName: this.selectedOutlet.name}
+                }
             }
 
             this.dialogRef.close(data);

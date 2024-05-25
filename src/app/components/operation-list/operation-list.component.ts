@@ -12,6 +12,7 @@ import {OperatorService} from "../../services/operator.service";
 import {WarningModalComponent} from "../warning-modal/warning-modal.component";
 import {MatIcon} from "@angular/material/icon";
 import {MatIconButton} from "@angular/material/button";
+import {NotificationModalComponent} from "../notification-modal/notification-modal.component";
 
 @Component({
   selector: 'operation-list',
