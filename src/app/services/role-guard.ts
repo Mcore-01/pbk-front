@@ -1,7 +1,7 @@
 import {inject, Injectable} from '@angular/core';
 import {
   ActivatedRouteSnapshot,
-  CanActivateFn,
+  CanActivateFn, Router,
   RouterStateSnapshot,
 } from "@angular/router";
 
@@ -9,16 +9,15 @@ import {
   providedIn: 'root'
 })
 export class RoleGuard {
-  constructor() {
+  constructor(private router: Router) {
   }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    const role = localStorage.getItem("userRole");
-    if (role){
-      return role == 'Operator';
+    const isAdmin = localStorage.getItem("userRole") === 'Operator';
+    if (!isAdmin) {
+      this.router.navigate(['/forbidden']).then();
     }
-
-    return false;
+    return isAdmin;
   }
 }
 export const IsAdminGuard: CanActivateFn = (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) : boolean =>{

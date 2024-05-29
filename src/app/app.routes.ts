@@ -9,6 +9,7 @@ import {CategoryListComponent} from "./components/operator/category-list/categor
 import {CardListComponent} from "./components/operator/card-list/card-list.component";
 import {WelcomePageComponent} from "./pages/welcome-page/welcome-page.component";
 import {IsAdminGuard} from "./services/role-guard";
+import {ErrorPageComponent} from "./pages/error-page/error-page.component";
 
 const operatorPanelChildrenRoutes: Routes = [
     { path: "bank", component: BankListComponent},
@@ -22,5 +23,8 @@ export const routes: Routes = [
     {path: 'main', component: MainPageComponent},
     {path: 'auth', component: AuthPageComponent},
     {path: 'reg', component: RegPageComponent},
-    {path: 'operator', component: OperatorPanelComponent, children: operatorPanelChildrenRoutes, canActivate:[IsAdminGuard]}
+    {path: 'operator', component: OperatorPanelComponent, children: operatorPanelChildrenRoutes, canActivate:[IsAdminGuard]},
+    {path: 'forbidden', component: ErrorPageComponent, data: { errorCode: 403}},
+    {path: 'not-found', component: ErrorPageComponent, data: { errorCode: 404}},
+    {path: '**', redirectTo: '/not-found'}
 ];
