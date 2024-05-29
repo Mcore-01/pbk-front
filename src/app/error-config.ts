@@ -4,7 +4,7 @@ export interface IError{
     annotation: string;
 }
 export const errorDict = new Map<number, IError>();
-errorDict.set(404, {code: 404, message: 'СТРАНИЦА НЕ НАЙДЕНА',
-    annotation:'страница, на которую вы пытаетесь попасть, не существует или была удалена перейдите на главную страницу'});
-errorDict.set(403, {code: 403, message: 'ДОСТУП ЗАПРЕЩЕН',
+errorDict.set(404, {code: 404, message: 'страница не найдена',
+    annotation:'страница, на которую вы пытаетесь попасть, не существует или была удалена'});
+errorDict.set(403, {code: 403, message: 'доступ запрещен',
     annotation:'у вас нет прав для перехода на эту страницу'});
