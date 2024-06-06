@@ -1,0 +1,21 @@
+<modal (isBackgroundClicked)="closeDialog()">
+    <div class="load-form">
+        <div class="labels-dialog">
+            <h2>При загрузке данных будут удалены предыдущие записи.</h2>
+            <h2>Загрузить данные?</h2>
+            @if(fileSelected){
+                <h2 class="file-name">{{fileName}}</h2>
+            }
+        </div>
+        <div class="control-form-button">
+            @if(fileSelected){
+                <button mat-flat-button color="primary" (click)="closeDialog()">Загрузить</button>
+            }
+            @else {
+                <input type="file" accept=".xls, .xlsx" (change)="fileChanged($event)" #fileInput>
+                <button mat-flat-button color="primary" (click)="clickFileInput()">Выбрать файл</button>
+            }
+            <button mat-flat-button color="primary" (click)="dialogRef.close()">Отмена</button>
+        </div>
+    </div>
+</modal>

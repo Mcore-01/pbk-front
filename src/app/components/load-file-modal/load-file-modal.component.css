@@ -1,0 +1,36 @@
+input[type=file] {
+    display: none;
+}
+h1, h2, h3, h4{
+    text-align: center;
+    font-weight: normal;
+    font-size: 24px;
+}
+
+.load-form{
+    width: 25vw;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.labels-dialog{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    gap: 20px;
+}
+.file-name{
+    padding: 20px;
+    border: 1px solid;
+    border-radius: 22px;
+}
+
+.control-form-button{
+    display: flex;
+    justify-content: right;
+
+    gap: 20px
+}

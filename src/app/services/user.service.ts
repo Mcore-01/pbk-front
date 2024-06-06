@@ -1,10 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {IPaginatedData} from "../response-models/PaginatedData";
 import {IUserCard} from "../models/usercard";
 import {IOperation} from "../models/operation";
-import {IBank} from "../models/bank";
-import {tap} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -45,5 +42,9 @@ export class UserService {
 
   deleteListUserOperation(ids: number[]){
     return this.http.request( 'delete',`/api/Operation/list`, {body: ids});
+  }
+
+  uploadFile(file: File){
+    return this.http.post(`/api/Operation/file`, file);
   }
 }

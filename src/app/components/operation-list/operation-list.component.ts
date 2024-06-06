@@ -1,18 +1,13 @@
 import {Component, EventEmitter, OnDestroy, OnInit, Output} from '@angular/core';
 import {UserService} from "../../services/user.service";
 import {IOperation} from "../../models/operation";
-import {firstValueFrom, retry, Subscription} from "rxjs";
-import {IOutlet} from "../../models/outlet";
-import {OutletModalComponent} from "../operator/outlet-modal/outlet-modal.component";
-import {Operation} from "../../enums/operation";
+import {firstValueFrom, Subscription} from "rxjs";
 import {Dialog} from "@angular/cdk/dialog";
 import {OperationModalComponent} from "../operation-modal/operation-modal.component";
-import {HttpClientModule} from "@angular/common/http";
-import {OperatorService} from "../../services/operator.service";
 import {WarningModalComponent} from "../warning-modal/warning-modal.component";
 import {MatIcon} from "@angular/material/icon";
 import {MatIconButton} from "@angular/material/button";
-import {NotificationModalComponent} from "../notification-modal/notification-modal.component";
+import {LoadFileModalComponent} from "../load-file-modal/load-file-modal.component";
 
 @Component({
   selector: 'operation-list',
@@ -127,7 +122,7 @@ export class OperationListComponent implements OnInit, OnDestroy{
           console.log(error);
         }
       });
-      this.subs.push(subscription);return;
+      this.subs.push(subscription);
     }
   }
 
@@ -141,5 +136,26 @@ export class OperationListComponent implements OnInit, OnDestroy{
 
   clickSelectCardButton(){
     this.clickedSelectCardButton.emit();
+  }
+
+  async uploadFile(){
+    const resultDialog = await this.openFileDialog();
+    if (resultDialog){
+      const subscription= this.userService.uploadFile(resultDialog).subscribe({
+        next:() =>{
+          this.getOperations();
+        },
+        error:error=>{
+          console.log(error);
+        }
+      });
+      this.subs.push(subscription);
+    }
+  }
+
+  openFileDialog(){
+    const dialogRef = this.dialog.open<File>(LoadFileModalComponent);
+
+    return firstValueFrom(dialogRef.closed);
   }
 }
