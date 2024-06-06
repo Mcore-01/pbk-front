@@ -1,0 +1,16 @@
+.load-spinner-container{
+    width: 100vw;
+    height: 100vh;
+    z-index: 99;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.load-spinner{
+    width: 100px;
+    height: 100px;
+}
