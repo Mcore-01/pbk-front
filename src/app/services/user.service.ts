@@ -45,6 +45,9 @@ export class UserService {
   }
 
   uploadFile(file: File){
-    return this.http.post(`/api/Operation/file`, file);
+    const formData = new FormData();
+    formData.append('file', file);
+
+    return this.http.post(`/api/bank-statement/parse`, formData);
   }
 }

@@ -12,7 +12,7 @@
                 <button mat-flat-button color="primary" (click)="closeDialog()">Загрузить</button>
             }
             @else {
-                <input type="file" accept=".xls, .xlsx" (change)="fileChanged($event)" #fileInput>
+                <input type="file" accept=".pdf" (change)="fileChanged($event)" #fileInput>
                 <button mat-flat-button color="primary" (click)="clickFileInput()">Выбрать файл</button>
             }
             <button mat-flat-button color="primary" (click)="dialogRef.close()">Отмена</button>
